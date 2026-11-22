@@ -1,13 +1,18 @@
 # SAMA: Structure-Aware Alignment and Modular Adaptation for Robust Low-Resource Multilingual Multimodal Understanding
 
-**Official implementation of our IEEE Transactions on Multimedia (TMM) paper.**
+**Official implementation of our paper published in IEEE Transactions on Multimedia (TMM).**
 
-Authors: Jiu Sha, Yu Weng*, Kailiang weng, Minghao Wei, Mengxiao Zhu*
+**Authors:** Jiu Sha, Yu Weng*, Kailiang Wen, Minhao Wei, Mengxiao Zhu*
 
+---
 
 ### Structure-Aware Alignment and Modular Adaptation
 
-SAMA is a unified framework designed to improve the robustness and generalization of Multimodal Large Language Models (MLLMs) in low-resource multilingual environments.
+SAMA is a unified framework designed to improve the robustness and generalization of Multimodal Large Language Models (MLLMs) in low-resource multilingual environments. It integrates three key components:
+
+- **Structure-Aware Cross-Modal Alignment:** Explicitly models writing direction, script type, and reading order to improve visual-textual grounding.
+- **Script-Conditioned Modular Adaptation:** Introduces script-grouped LoRA adapters with dynamic routing to facilitate cross-lingual transfer while mitigating catastrophic forgetting.
+- **Multimodal Robustness Regularization:** Incorporates cross-lingual safety consistency and OCR-noise invariance objectives to improve robustness against noisy and adversarial multimodal inputs.
 
 ### Framework Overview
 
@@ -70,57 +75,51 @@ flowchart TB
     CONS --> TOTAL
 ```
 
-
-
 ### Training
 
-SAMA is trained using a unified multi-task optimization strategy. The training process jointly optimizes task supervision, structural alignment, cross-lingual safety consistency, and OCR robustness.
+SAMA adopts a unified multi-task optimization strategy, jointly optimizing task supervision, structural alignment, cross-lingual safety consistency, and OCR robustness.
 
-### Training Pipeline
+**Training Pipeline**
 
 1. Load the pretrained Qwen-2.5-VL backbone.
 2. Initialize structural embeddings and script-conditioned LoRA modules.
 3. Load multilingual multimodal training samples and structural metadata.
 4. Apply structural consistency and OCR-noise perturbations.
 5. Perform multi-task supervised training with auxiliary robustness objectives.
-6. Save the final model checkpoint and modular adapter parameters.
+6. Save the model checkpoint and modular adapter parameters.
 
-### Training Command
+**Training Command**
 
-The following is a command template. The actual script names and arguments will be synchronized with the released implementation.
+The following is an illustrative command. The actual script and arguments will be updated with the official code release.
 
 ```bash
-# Set model and dataset paths
 BASE_MODEL=/path/to/Qwen2.5-VL-7B-Instruct
 TRAIN_DATA=/path/to/SAMA_train
 OUTPUT_DIR=/path/to/SAMA-7B
 
-# Launch SAMA training
 python <TRAINING_SCRIPT> \
     --model_name_or_path ${BASE_MODEL} \
     --train_data ${TRAIN_DATA} \
     --output_dir ${OUTPUT_DIR}
 ```
 
-The final implementation will include the exact training entry point, configuration files, distributed training settings, and checkpoint-saving procedure.
+### Inference
 
-## 8. Inference
+During inference, SAMA automatically estimates structural attributes and activates the corresponding script-conditioned adapter.
 
-At inference time, SAMA automatically determines the structural attributes of the input and activates the corresponding script-conditioned adapter.
-
-### Inference Pipeline
+**Inference Pipeline**
 
 1. **Input Processing:** Receive an image and multilingual instruction.
-2. **Structural Estimation:** Infer script type, writing direction, and dominant reading order using detected text regions, Unicode ranges, and language identification signals.
-3. **Adapter Routing:** Select the corresponding script-conditioned LoRA branch.
-4. **Multimodal Reasoning:** Perform structure-conditioned visual-textual reasoning through the adapted MLLM.
+2. **Structural Estimation:** Identify script type, writing direction, and dominant reading order using Unicode ranges and language identification signals.
+3. **Adapter Routing:** Activate the corresponding script-conditioned LoRA branch.
+4. **Multimodal Reasoning:** Perform structure-conditioned visual-textual reasoning.
 5. **Response Generation:** Generate the requested multilingual output.
 
 For mixed-script samples, the dominant script and reading flow are determined according to the largest text-region proportion.
 
-### Inference Command
+**Inference Command**
 
-The following is an illustrative command template; the actual arguments will be updated according to the released inference implementation.
+The following is an illustrative command. The actual implementation will be updated upon code release.
 
 ```bash
 MODEL_PATH=/path/to/SAMA-7B
@@ -131,13 +130,10 @@ python <INFERENCE_SCRIPT> \
     --image_path ${IMAGE_PATH} \
     --language ug \
     --task vqa \
-    --prompt "Please describe the content of this image."
+    --prompt "What is shown in this image?"
 ```
 
-
-## 9. Repository Structure
-
-The following is the planned repository organization and will be adjusted to match the actual source-code release.
+### Repository Structure
 
 ```text
 SAMA/
@@ -171,23 +167,20 @@ SAMA/
 └── README.md
 ```
 
-## 10. Model Weights and Data Availability
-
-The following resources will be updated as they become available:
+### Model Weights and Data Availability
 
 | Resource | Availability |
 |---|---|
-| Source Code | Repository release |
+| Source Code | To be released |
 | SAMA-3B Checkpoint | To be updated |
 | SAMA-7B Checkpoint | To be updated |
 | Training Dataset | Access information to be updated |
 | Evaluation Dataset | Access information to be updated |
-| Evaluation Scripts | To be updated |
+| Evaluation Scripts | To be released |
 
 Please refer to this repository for the latest release information.
 
-
-## 12. Citation
+### Citation
 
 If you find this work useful in your research, please consider citing our paper:
 
@@ -199,6 +192,8 @@ If you find this work useful in your research, please consider citing our paper:
   year={2026}
 }
 ```
+
+---
 
 **HeTong Multilingual Intelligence Team**
 
