@@ -13,6 +13,14 @@ SAMA is a unified framework designed to improve the robustness and generalizatio
 - **Script-Conditioned Modular Adaptation:** Introduces script-grouped LoRA adapters with dynamic routing to facilitate cross-lingual transfer while mitigating catastrophic forgetting.
 - **Multimodal Robustness Regularization:** Incorporates cross-lingual safety consistency and OCR-noise invariance objectives to improve robustness against noisy and adversarial multimodal inputs.
 
+<p align="center">
+  <img
+    src="images/Framework.png"
+    alt="SAMA Framework"
+    width="900"
+    height="500"
+  />
+</p>
 
 ### Training
 
