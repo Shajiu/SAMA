@@ -114,12 +114,8 @@ SAMA/
 
 | Resource | Availability |
 |---|---|
-| Source Code | To be released |
-| SAMA-3B Checkpoint | To be updated |
-| SAMA-7B Checkpoint | To be updated |
-| Training Dataset | Access information to be updated |
-| Evaluation Dataset | Access information to be updated |
-| Evaluation Scripts | To be released |
+| Source Code | https://github.com/Shajiu/SAMA |
+| SAMA-7B Checkpoint | https://huggingface.co/shajiu/SAMA-7B |
 
 Please refer to this repository for the latest release information.
 
