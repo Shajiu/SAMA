@@ -1,24 +1,47 @@
-<h1 align="center" style="margin-top: -35px;"><b>SAMA: Structure-Aware Alignment and Modular Adaptation for Robust Low-Resource Multilingual Multimodal Understanding</b></h1>
+<div align="center">
 
+<h1>
+  SAMA
+</h1>
 
+<h2>
+  Structure-Aware Alignment and Modular Adaptation<br/>
+  for Robust Low-Resource Multilingual Multimodal Understanding
+</h2>
 
-**Official implementation of our paper published in IEEE Transactions on Multimedia (TMM).**
-
-<h2 align="center">👥 Authors</h2>
-
-<p align="center">
-  <b>Jiu Sha</b> &nbsp;·&nbsp;
-  <b>Yu Weng<sup>*</sup></b> &nbsp;·&nbsp;
-  <b>Kailiang Wen</b> &nbsp;·&nbsp;
-  <b>Minhao Wei</b> &nbsp;·&nbsp;
-  <b>Mengxiao Zhu<sup>*</sup></b>
+<p>
+  <strong>Official Implementation</strong>
+  <br/>
+  Published in <em><strong>IEEE Transactions on Multimedia (TMM)</strong></em>
 </p>
 
-<p align="center">
+<br/>
+
+<h3>✦ Authors ✦</h3>
+
+<p>
+  <strong>Jiu Sha</strong>
+  &nbsp; · &nbsp;
+  <strong>Yu Weng<sup>*</sup></strong>
+  &nbsp; · &nbsp;
+  <strong>Kailiang Wen</strong>
+  &nbsp; · &nbsp;
+  <strong>Minhao Wei</strong>
+  &nbsp; · &nbsp;
+  <strong>Mengxiao Zhu<sup>*</sup></strong>
+</p>
+
+<p>
   <sub><sup>*</sup> Corresponding Authors</sub>
 </p>
 
+</div>
+
 ---
+
+
+
+
 
 ## 1. Structure-Aware Alignment and Modular Adaptation
 
