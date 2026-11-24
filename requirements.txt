@@ -1,0 +1,14 @@
+# 实测可用的版本组合（Python 3.12 + CUDA 12.8 + H100）
+# 版本不一致最常见的两个报错：
+#   - get_model_processor() got an unexpected keyword argument 'attn_impl'
+#   - You need to use `even_batches=False` when the batch sampler has no batch size
+torch==2.7.0
+transformers==4.57.6
+ms-swift==4.6.0
+accelerate==1.10.1
+peft==0.17.1
+PyYAML>=6.0
+Pillow>=10.0
+regex>=2024.5.15
+safetensors>=0.4.0
+numpy>=1.26
