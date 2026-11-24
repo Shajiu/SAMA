@@ -1,8 +1,23 @@
-##  SAMA: Structure-Aware Alignment and Modular Adaptation for Robust Low-Resource Multilingual Multimodal Understanding
+<h1 align="center" style="margin-top: -35px;"><b>SAMA: Structure-Aware Alignment and Modular Adaptation for Robust Low-Resource Multilingual Multimodal Understanding</b></h1>
+
+
 
 **Official implementation of our paper published in IEEE Transactions on Multimedia (TMM).**
 
-**Authors:** Jiu Sha, Yu Weng*, Kailiang Wen, Minhao Wei, Mengxiao Zhu*
+<h2 align="center">👥 Authors</h2>
+
+<p align="center">
+  <b>Jiu Sha</b> &nbsp;·&nbsp;
+  <b>Yu Weng<sup>*</sup></b> &nbsp;·&nbsp;
+  <b>Kailiang Wen</b> &nbsp;·&nbsp;
+  <b>Minhao Wei</b> &nbsp;·&nbsp;
+  <b>Mengxiao Zhu<sup>*</sup></b>
+</p>
+
+<p align="center">
+  <sub><sup>*</sup> Corresponding Authors</sub>
+</p>
+
 ---
 
 ## 1. Structure-Aware Alignment and Modular Adaptation
@@ -158,11 +173,6 @@ CKPT=output/sama_7b_full python -u tools/eval_baseline.py \
   --checkpoint output/sama_7b_full --jsonl data/sama/val.jsonl --root . --stratified 40
 ```
 
-**Evaluation outputs:**
-
-- Group-wise `char_f1`, categorized by `adapter_group`.
-- Overall `char_f1`, `EM`, and `route_acc`.
-
 ## 7. Inference
 
 Example:
@@ -183,11 +193,11 @@ The output is a JSON object containing:
 
 | HINT | Script | Adapter Group |
 |---|---|---|
-| `ug` | Arabic | `rtl` |
+| `ug` | Uyghur | `rtl` |
 | `mn` | Mongolian | `vertical` |
 | `bo` | Tibetan | `mixed` |
-| `zh` | Han | — |
-| `en` | Latin | — |
+| `zh` | Chinese | — |
+| `en` | English | — |
 
 
 
