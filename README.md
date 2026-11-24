@@ -5,7 +5,7 @@
 **Authors:** Jiu Sha, Yu Weng*, Kailiang Wen, Minhao Wei, Mengxiao Zhu*
 ---
 
-### Structure-Aware Alignment and Modular Adaptation
+## 1. Structure-Aware Alignment and Modular Adaptation
 
 SAMA is a unified framework designed to improve the robustness and generalization of Multimodal Large Language Models (MLLMs) in low-resource multilingual environments. It integrates three key components:
 
@@ -23,7 +23,7 @@ SAMA is a unified framework designed to improve the robustness and generalizatio
 </p>
 
 
-### Repository Structure
+## 2. Repository Structure
 
 ```text
 SAMA_release/
@@ -50,7 +50,7 @@ SAMA_release/
 
 
 
-## 1. Environment
+## 3. Environment
 
 | Component | Tested Version |
 |---|---|
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 > **Important:** Do not use a Hugging Face Hub model ID. On offline machines, ms-swift will attempt to download the model from the Internet, typically resulting in a 10-minute wait followed by a connection failure.
 
-## 2. Dataset
+## 4. Dataset
 
 The dataset uses JSONL format, with one sample per line. The `image` field must contain a path **relative to the repository root**.
 
@@ -100,7 +100,7 @@ Example:
 - `ocr_text` is used only as input for grapheme-level perturbations. **It must NOT contain the ground-truth answer**, otherwise the answer will leak into the prompt.
 - All samples within the same batch must belong to the same group. The `is_low_resource` and `is_unsafe` flags must also be homogeneous within each batch. These constraints are enforced by `sampler.py`.
 
-## 3. Training
+## 5. Training
 
 Run:
 
@@ -143,7 +143,7 @@ output/sama_7b_full/
 └── checkpoint-XXXX/
 ```
 
-## 4. Evaluation
+## 6. Evaluation
 
 Run evaluation:
 
@@ -163,7 +163,7 @@ CKPT=output/sama_7b_full python -u tools/eval_baseline.py \
 - Group-wise `char_f1`, categorized by `adapter_group`.
 - Overall `char_f1`, `EM`, and `route_acc`.
 
-## 5. Inference
+## 7. Inference
 
 Example:
 
@@ -191,7 +191,7 @@ The output is a JSON object containing:
 
 
 
-### Model Weights and Data Availability
+## 8. Model Weights and Data Availability
 
 | Resource | Availability |
 |---|---|
@@ -200,7 +200,7 @@ The output is a JSON object containing:
 
 Please refer to this repository for the latest release information.
 
-### Citation
+## 9. Citation
 
 If you find this work useful in your research, please consider citing our paper:
 
