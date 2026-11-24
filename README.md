@@ -224,12 +224,21 @@ The output is a JSON object containing:
 
 
 
-## 8. Model Weights and Data Availability
+## 8. Code and Model Availability
 
-| Resource | Availability |
-|---|---|
-| Source Code | https://github.com/Shajiu/SAMA |
-| SAMA-7B Checkpoint | https://huggingface.co/shajiu/SAMA-7B |
+<p align="center">
+  <a href="https://github.com/Shajiu/SAMA">
+    <strong>📂 GitHub Repository</strong>
+  </a>
+  &nbsp;&nbsp; | &nbsp;&nbsp;
+  <a href="https://huggingface.co/shajiu/SAMA-7B">
+    <strong>🤗 SAMA-7B Model Weights</strong>
+  </a>
+</p>
+
+<p align="center">
+  <sub>Official training, inference, and evaluation code, together with the released model checkpoint.</sub>
+</p>
 
 Please refer to this repository for the latest release information.
 
