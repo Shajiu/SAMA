@@ -1,0 +1,76 @@
+# SAMA (script-adaptive multimodal alignment) reference configuration for Qwen2.5-VL-7B.
+# Every key here is read by train_sama.py / sama/*.py; nothing is overridden by the CLI.
+# Values below are the ones used for the released v3 run (4xH100, 3 epochs, 6,375 steps).
+
+model:
+  # Change this to the local directory that holds the Qwen2.5-VL-7B-Instruct weights.
+  # A hub id would make ms-swift try to download, which fails on offline clusters.
+  model_name_or_path: /mnt/data/FlagOS/models/Qwen2.5-VL-7B-Instruct
+  max_pixels: 262144        # paper value (approx. 512x512); image tokens ~= pixels / 784
+  max_length: 4096          # hard cap of the whole template sequence (incl. image tokens)
+  torch_dtype: bfloat16
+  attn_implementation: eager   # REQUIRED: output_attentions is unavailable under flash-attn
+  gradient_checkpointing: true # three views stay alive for one backward; recompute to fit
+
+lora:
+  rank: 64
+  alpha: 128
+  dropout: 0.05             # engineering addition (not in the paper); suppresses long-answer loops
+  target_modules: [q_proj, k_proj, v_proj]   # o_proj is intentionally NOT adapted (paper setting)
+  adapter_groups: [rtl, vertical, mixed]     # "base" is not a trainable branch
+
+# Which Script-LoRA branch a script routes to.  Used at training time by the data
+# validator and at inference time by infer_sama.py.
+# Tibetan -> mixed is PROVISIONAL (the paper does not pin it down for LTR Tibetan).
+script_to_adapter:
+  arabic: rtl
+  mongolian: vertical
+  tibetan: mixed
+  latin: base
+  han: base
+  other: base
+
+# Vocabulary of the 16 structural special tokens (4 x 7 x 5 combinations are declared,
+# only those present in the data are registered).
+structural_vocab:
+  direction: [ltr, rtl, vertical, mixed]
+  script: [tibetan, arabic, mongolian, latin, han, other, mixed]
+  order: [ltr, rtl, top_to_bottom, columns, mixed]
+
+training:
+  num_train_epochs: 3
+  per_device_train_batch_size: 1     # SAMA losses are defined per sample; do not raise
+  gradient_accumulation_steps: 4     # effective batch = num_gpus * 1 * 4
+  learning_rate: 1.0e-4
+  weight_decay: 0.1
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  max_grad_norm: 5.0                 # observed grad_norm p50 = 6.8, p90 = 10.8
+  logging_steps: 5
+  save_steps: 500
+  save_total_limit: 2
+  dataloader_num_workers: 2
+  seed: 42
+  bf16: true
+  ddp_find_unused_parameters: true   # required: only one LoRA branch is active per batch
+  output_dir: output/sama_7b
+
+loss:
+  lambda_task: 1.0        # supervised fine-tuning on the clean view
+  lambda_struct: 0.5      # JS divergence between clean and augmented attention maps
+  lambda_safe: 1.0        # refusal cross-entropy for unsafe rows
+  lambda_robust: 0.5      # symmetric KL between clean and OCR-noised logits
+  noise_probability: 0.15
+
+augmentation:
+  brightness_min: 0.90
+  brightness_max: 1.10
+  contrast_min: 0.90
+  contrast_max: 1.10
+  saturation_min: 0.95
+  saturation_max: 1.05
+
+inference:
+  max_new_tokens: 512
+  do_sample: false
+  temperature: 0.0
